@@ -1,41 +1,43 @@
-travel0 = "正しい値を入力してください"
-travel1 = "沖縄旅行"
-travel2 = "北海道旅行"
-travel3 = "九州旅行"
+plans = [
+    {travel: :沖縄旅行, price: 10000},
+    {travel: :北海道旅行, price: 20000},
+    {travel: :九州旅行, price: 15000}
+]
 
-price1 = 10000
-price2 = 20000
-price3 = 15000
 
-puts "旅行プランを選択してください。"
-puts "1.#{travel1}(¥#{price1})"
-puts "2.#{travel2}(¥#{price2})"
-puts "3.#{travel3}(¥#{price3})"
+puts "旅行プランを選択してください"
+plans.each.with_index(1) do |plan,i|
+    puts "#{i}. #{plan[:travel]}(¥#{plan[:price]})"
+end
 
-travels = [travel0, travel1, travel2, travel3]
+choice = gets.to_i
 
-travel_plan_select = gets.to_i
-select_plan = travels[travel_plan_select]
-puts "#{select_plan}ですね。何人で行きますか？"
+case choice
+when 1
+    puts "#{plans[0][:travel]}ですね、何人で行きますか？"
+when 2
+    puts "#{plans[1][:travel]}ですね、何人で行きますか？"
+when 3
+    puts "#{plans[2][:travel]}ですね、何人で行きますか？"
+end
 
 num = gets.to_i
 
 
-
-if travel_plan_select == 1 && num
-    total_price = price1 * num
-    puts "金額は：￥#{total_price}です"
-elsif travel_plan_select == 2 && num
-    total_price = price2 * num
-    puts "金額は：￥#{total_price}です"
-elsif travel_plan_select == 3 && num
-    total_price = price3 * num
-    puts "金額は：￥#{total_price}です"
+if choice == 1 && num <= 5
+    total_price = plans[0][:price] * num
+    puts "合計料金：#{total_price}"
+elsif choice == 2 && num <= 5
+    total_price = plans[1][:price] * num
+    puts "合計料金：#{total_price}"
+elsif choice == 3 && num <= 5
+    total_price = plans[2][:price] * num
+    puts "合計料金：#{total_price}"
+elsif num >= 5
+    total_price = plans[price] * num * 0.9
+    puts "５人以上なので１０％割引となります"
+    puts "合計金額：¥#{total_price}"
 else
-    puts "人数は半角英数で入力してください"
-end
-
-if num >= 5
-    puts "5人以上なので１０％割引になります"
-    puts "合計金額は：￥#{total_price * 0.9}です"
+    puts "正しい値を入力してください。"
+    
 end
