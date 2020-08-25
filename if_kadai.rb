@@ -11,6 +11,8 @@ plans.each.with_index(1) do |plan,i|
 end
 
 choice = gets.to_i
+select_plan = plans[choice-1][:price]
+
 
 case choice
 when 1
@@ -22,22 +24,13 @@ when 3
 end
 
 num = gets.to_i
+total_price = select_plan * num
 
-
-if choice == 1 && num <= 5
-    total_price = plans[0][:price] * num
-    puts "合計料金：#{total_price}"
-elsif choice == 2 && num <= 5
-    total_price = plans[1][:price] * num
-    puts "合計料金：#{total_price}"
-elsif choice == 3 && num <= 5
-    total_price = plans[2][:price] * num
-    puts "合計料金：#{total_price}"
-elsif num >= 5
-    total_price = plans[price] * num * 0.9
-    puts "５人以上なので１０％割引となります"
-    puts "合計金額：¥#{total_price}"
+if num <= 4
+    select_plan * num
+    puts "合計金額：¥#{total_price} "
 else
-    puts "正しい値を入力してください。"
-    
+    puts "5人以上なので10%割引となります。"
+    puts "合計金額：¥#{select_plan * num * 0.9} "
 end
+
